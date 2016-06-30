@@ -16,7 +16,8 @@ RUN apt-get -y install curl build-essential libpcre3 libpcre3-dev zlib1g-dev lib
     apt-get purge -y curl git && \
     apt-get autoremove -y
 
-RUN ln -sf /dev/stdout /var/log/nginx/access.log && \
-	ln -sf /dev/stderr /var/log/nginx/error.log
+RUN mkdir -p /var/log/nginx /usr/local/nginx/conf && \
+    ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log
 
 CMD [ "/usr/local/nginx/sbin/nginx", "-c", "/usr/local/nginx/conf/nginx.conf" ]
